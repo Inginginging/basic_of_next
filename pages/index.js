@@ -6,17 +6,7 @@ export default function Home({ results }) {
   //server에서 미리 data를 받고 page에 랜더링하기 때문에 front에선 laoding을 보여줄 필요가 없음
   const router = useRouter();
   const onClick = (id, title) => {
-    router.push(
-      //url이동 시 넘어가는 정보
-      {
-        pathname: `movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      //url 주소를 masking 해줌
-      `movies/${id}`
-    );
+    router.push(`movies/${title}/${id}`);
   };
   return (
     <div className="container">
@@ -28,7 +18,7 @@ export default function Home({ results }) {
           key={movie.id}
         >
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-          <Link href={`movies/${movie.id}`}>
+          <Link href={`movies/${movie.original_title}/${movie.id}`}>
             <h4>{movie.original_title}</h4>
           </Link>
         </div>
